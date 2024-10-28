@@ -15,10 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('number');
             $table->text('description');
-            $table->foreignId('status_id')
-                  ->nullable();
             $table->foreignId('user_id')
-                  ->nullable();
+                  ->nullable()
+                  ->constrained()
+                  ->cascadeOnUpdate()
+                  ->nullOnDelete();
+            $table->foreignId('status_id')
+                  ->nullable()
+                  ->constrained()
+                  ->cascadeOnUpdate()
+                  ->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
